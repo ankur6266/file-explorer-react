@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -43,13 +43,41 @@ function App() {
   }
 
   const handleFileContentSave = () => {
-    if(selectedfile){
-      dispatch(updateFileContent({nodeId: selectedfile.id, content: fileContent}));
+    if (selectedfile) {
+      dispatch(updateFileContent({ nodeId: selectedfile.id, content: fileContent }));
+      // Find the updated file node from Redux state
+      const updatedFile = findNodeById(nodes, selectedfile.id);
+      if (updatedFile) {
+        setSelectedfile(updatedFile);
+        setFileContent(updatedFile.content || "");
+      }
     }
+  };
+
+  // Helper function to find node by id
+  function findNodeById(nodes, id) {
+    for (let node of nodes) {
+      if (node.id === id) return node;
+      if (node.children) {
+        const found = findNodeById(node.children, id);
+        if (found) return found;
+      }
+    }
+    return null;
   }
 
   const folderNodes = getAllFolderNodes(nodes);
   console.log("folderNodes:", folderNodes);
+
+  useEffect(() => {
+    if (selectedfile) {
+      const updatedFile = findNodeById(nodes, selectedfile.id);
+      setFileContent(updatedFile?.content || "");
+    }
+  }, [nodes, selectedfile]);
+  
+
+
   return (
     <>
      {/* <Header /> */}

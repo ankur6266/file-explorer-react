@@ -87,11 +87,11 @@ const fileSystemSlice = createSlice({
 
         // update file content reducer
         updateFileContent: (state, action) => {
-            const {nodeId, newContent} = action.payload;
+            const {nodeId, content} = action.payload;
             function recursiveUpdate(nodes) {
                 nodes.forEach(node => {
                     if(node.id === nodeId && node.type === 'file') {
-                        node.content = newContent;
+                        node.content = content;
                     }else if(node.children){
                         recursiveUpdate(node.children);
                     }
