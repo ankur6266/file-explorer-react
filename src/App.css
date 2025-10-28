@@ -59,3 +59,53 @@ background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(31, 31, 48, 1) 20%
         background-color: rgba(255, 255, 255, 0.1);
     }
 }
+
+.selectButton{
+    background: unset;
+    color: white;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    option{
+        background: #020024;
+        color: white;
+        border-radius: 10px;
+    }
+}
+
+.inputElementWrap{
+    display: flex;
+    column-gap: 10px;
+}
+
+.fileCreateActionWrapper{
+    display: flex;
+    row-gap: 10px;
+    margin-bottom: 10px;
+    flex-direction: column;
+}
+
+.folderSelector{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;   
+    button{
+        background: rgb(0, 86, 0);
+        color: white;
+        padding: 5px 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        cursor: pointer;
+
+    }
+}
+
+#fileSaveButton{
+    background: rgb(0, 86, 0);
+    color: white;
+    padding: 5px 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px 0;
+}

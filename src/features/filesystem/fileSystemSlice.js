@@ -99,8 +99,28 @@ const fileSystemSlice = createSlice({
             }
             recursiveUpdate(state.nodes);
         },
+        reorderNodes: (state, action) => {
+            const {parentId, fromIndex, toIndex} = action.payload;
+            function findFolder(nodes, folderId) {
+                for(const node of nodes) {
+                    if(node.type === 'folder' && node.id === folderId) {
+                        return node;
+                    }
+                    if(node.children) {
+                        const found = findFolder(node.children, folderId);
+                        if(found) return found;
+                    }
+                }
+                return null;
+            }
+            const targetFolder = findFolder(state.nodes, parentId);
+            if(targetFolder && targetFolder.children) {
+                const [move] = targetFolder.children.splice(fromIndex, 1);
+                targetFolder.children.splice(toIndex, 0, move);
+            }
+        }
     }
 });
 
-export const { addNode, deleteNode, renameNode, updateFileContent } = fileSystemSlice.actions;
+export const { addNode, deleteNode, renameNode, updateFileContent, reorderNodes } = fileSystemSlice.actions;
 export default fileSystemSlice.reducer;

@@ -57,18 +57,22 @@ function App() {
       {/* files create, update , rename */}
       <div id='fileTreeWrapper'>
         <h2>File Explorer</h2>
-        <div>
-          <input className='createElementInput' type="text" onChange={(e) => setNewNodeName(e.target.value)} placeholder='New File/Folder name'/>
-          <select value={newNodeType} onChange={(e) => {setNewNodeType(e.target.value)}}>
+        <div className='fileCreateActionWrapper'>
+          <div className='inputElementWrap'>
+          <input name="create" className='createElementInput' type="text" onChange={(e) => setNewNodeName(e.target.value)} placeholder='New File/Folder name'/>
+          <select className='selectButton' value={newNodeType} onChange={(e) => {setNewNodeType(e.target.value)}}>
             <option value="file">File</option>
             <option value="folder">Folder</option>
           </select>
-          <select value={parentId} onChange={(e) => {setParentId(e.target.value)}}>
+          </div>
+          <div className='folderSelector'>
+          <select className='selectButton' value={parentId} onChange={(e) => {setParentId(e.target.value)}}>
             {folderNodes.map(folder => {
               return <option key={folder.id} value={folder.id}>{folder.name}</option>
             })}
           </select>
           <button onClick={handleAddNode}>Add</button>
+          </div>
         </div>
         <FileTree nodes={nodes} onSelect={handleFileSelect} />
 
@@ -79,11 +83,11 @@ function App() {
         <h2>File View</h2>
         {selectedfile ? <>
           <h3>{selectedfile.name}</h3>
+          <button id='fileSaveButton' onClick={handleFileContentSave}>Save</button>
           <textarea className='fileViewTextArea'
           value={fileContent} 
           onChange={(e) => setFileContent(e.target.value)}
           />
-          <button onClick={handleFileContentSave}>Save</button>
         </> : <div>Select a file to view its content</div>
         }
       </div>
