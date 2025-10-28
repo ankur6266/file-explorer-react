@@ -1,0 +1,61 @@
+#mainWrapper{
+    display: flex;
+    min-height: 100vh;
+}
+
+#fileTreeWrapper{
+    background: #020024;
+background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(31, 31, 48, 1) 20%, rgba(15, 75, 87, 1) 100%);
+    width: 300px;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    color: white;
+}
+
+#fileViewWrapper{
+    flex: 1;
+    padding: 10px;
+}
+
+.createElementInput{
+    background: unset;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+
+.fileViewTextArea{
+    width: 100%;
+    min-height: 200px;
+    box-sizing: border-box;
+}
+
+.iconNameButton{
+    cursor: pointer;
+    background: unset;  
+    border: none;
+    width: 30px;
+    height: 30px;
+    img{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.fileActionWrap{
+    display: flex;
+    column-gap: 5px;
+    margin-left: auto;
+}
+
+.fileItem{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    &:hover{
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
